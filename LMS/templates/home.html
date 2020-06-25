@@ -1,0 +1,42 @@
+{% extends "base.html"%}
+
+
+{% block title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+ 
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
+{% endblock %}
+
+<h1>Welcome to the LAMS application</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>YearOfRelease</th>
+            <th>Borrowed</th>
+            <th>Returned</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+   {% for book in books %}
+    <tr>
+        <td>{{book.Title}}</td>
+        <td>{{book.YearOfRelease}}</td>
+        <td>{{book.BorrowedDate}}</td>
+        <td>{{book.ReturnDate}}</td>
+
+    {% endfor %}
+    
+    <tbody>
+</table>
+    <p><a href="{% url 'logout' %}">logout</a></p
+
+    {% endblock %}
